@@ -1,0 +1,50 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+{% block title %}
+  {{ post.title_tag }}
+{% endblock %}
+{% block header %}
+
+  <!-- Page Header-->
+
+  <header class="masthead" style="background-image: url({% static '/blog/assets/img/post-bg1.jpg' %});">
+      <div class="container position-relative px-2 px-lg-2">
+          <div class="row gx-2 gx-lg-2 justify-content-center">
+              <div class="col-md-12 col-lg-12 col-xl-12">
+                  <div class="post-heading">
+                      <h1>{{ post.title }}</h1>
+                      <h2 class="post-subtitle">{{ post.snippet }}</h2><br>
+                      <span class="meta">
+                          Posted by
+                          <small>{{ post.author.first_name}}
+                          {{ post.author.last_name}}</small>
+                          on {{ post.post_date}}
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+{% endblock %}
+{% block content %}
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.mathbite.in{{ request.get_full_path }}"" class="fa fa-facebook">&nbsp; Share on Facebook</a>
+      <br><br>
+    {% if user.is_authenticated %}
+
+    {% endif %}
+    <article class="mb-4">
+        <div class="container px-2 px-lg-2">
+            <div class="row gx-1 gx-lg-1 justify-content-center">
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                  {{ post.body|safe }}
+                  <hr class="my-4" />
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.mathbite.in{{ request.get_full_path }}"" class="fa fa-facebook">&nbsp; Share on Facebook</a>
+                    <br><br>
+
+                </div>
+            </div>
+        </div>
+      </article>
+
+      <!-- <a href="{% url 'home' %}" class="btn btn-secondary">Back</a> -->
+{% endblock %}

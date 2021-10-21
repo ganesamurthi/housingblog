@@ -1,0 +1,59 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+{% block title%}
+  MathBite - Math blog for parents of IIT JEE aspirants
+{% endblock %}
+{% block header %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url({% static '/blog/assets/img/home-bg1.jpg' %});">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>MathBite for IIT JEE</h1>
+                    <span class="subheading">A Math Blog for parents of IIT JEE aspirants</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+{%  block content %}
+<div class="container px-2 px-lg-2">
+    <div class="row gx-2 gx-lg-2 justify-content-center">
+        <div class="col-md-12 col-lg-12 col-xl-12">
+
+          <div class="post-preview">
+
+              {% for post in object_list %}
+                <a href="{% url 'article_detail' post.slug post.pk %}">
+                      <h2 class="post-title">{{ post.title }}</h2></a>
+                      <h5 class="post-subtitle">{{ post.snippet }}</h5><br>
+
+                  <p class="post-meta">
+                      Posted by
+                      {{ post.author.first_name }}
+                      {{ post.author.last_name }}
+                      on {{ post.post_date}}
+                  </p>
+                  <hr class="my-4" />
+                  <small>
+                    {% if user.is_authenticated %}
+
+                    {% endif %}
+                  </small>
+
+              {% endfor %}
+
+          </div>
+          <!-- Divider-->
+
+        </div>
+    </div>
+</div>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://www.mathbite.in{{ request.get_full_path }}"" class="fa fa-facebook">&nbsp; Share on Facebook</a>
+
+
+  <br><br>
+
+{% endblock %}
